@@ -1,6 +1,6 @@
 snowflake_account  = "VYTWKTY-TC76598"
 snowflake_username = "MIGUERP89"
-snowflake_password = "Ciaoitalia.07!"
+snowflake_password = "xxxxxxx"
 
 environment = "prod"
 
