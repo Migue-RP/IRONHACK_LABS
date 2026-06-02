@@ -1,0 +1,82 @@
+version: 2
+
+sources:
+  - name: pyspark_transformations
+    description: >
+      Orders dataset generated from Kafka order events and transformed
+      in PySpark. Data is loaded into Snowflake by the batch processing
+      pipeline orchestrated by Airflow.
+
+    database: ECOMMERCE_DB
+    schema: BATCH
+
+    tables:
+      - name: pyspark_transformated_orders
+        description: >
+          Cleaned and enriched order dataset containing order,
+          customer and product information.
+
+models:
+  - name: stg_orders
+    description: >
+      Staging model built on top of the PySpark-transformed orders table.
+      Standardizes data types and exposes a clean analytics-ready view
+      for downstream dbt marts and reporting models.
+
+    columns:
+
+      - name: PRODUCT_ID
+        description: Unique identifier of the purchased product.
+        tests:
+          - not_null
+
+      - name: CUSTOMER_ID
+        description: Unique identifier of the customer.
+        tests:
+          - not_null
+
+      - name: ORDER_ID
+        description: Unique identifier of the order.
+        tests:
+          - unique
+          - not_null
+
+      - name: AMOUNT
+        description: Monetary value of the order.
+        tests:
+          - not_null
+
+      - name: PAYMENT_MODE
+        description: Payment method used by the customer (Card, Cash, Transfer).
+
+      - name: ORDER_TIME
+        description: Timestamp when the order was placed.
+        tests:
+          - not_null
+
+      - name: ORDER_DATE
+        description: Date extracted from ORDER_TIME for reporting and aggregation.
+
+      - name: STATUS
+        description: Current order status (COMPLETED, CANCELLED, PENDING).
+
+      - name: CUSTOMER_NAME
+        description: Full name of the customer.
+
+      - name: COUNTRY
+        description: Country where the customer is located.
+
+      - name: AGE
+        description: Customer age at the time of analysis.
+
+      - name: GENDER
+        description: Customer gender.
+
+      - name: SIGNUP_DATE
+        description: Date when the customer registered.
+
+      - name: PRODUCT_NAME
+        description: Name of the purchased product.
+
+      - name: CATEGORY
+        description: Product category (Electronics, Home, Kitchen, etc.).

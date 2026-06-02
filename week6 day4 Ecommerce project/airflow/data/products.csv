@@ -1,0 +1,21 @@
+product_id,product_name,category
+1,Fridge,Appliances
+2,Washing Machine,Appliances
+3,Dishwasher,Appliances
+4,Oven,Appliances
+5,Blender,Kitchen
+6,Toaster,Kitchen
+7,Microwave,Kitchen
+8,Coffee Machine,Kitchen
+9,TV,Electronics
+10,Smartphone,Electronics
+11,Tablet,Electronics
+12,Speaker,Electronics
+13,Laptop,Computing
+14,Monitor,Computing
+15,Printer,Computing
+16,Router,Computing
+17,Vacuum Cleaner,Home
+18,Air Conditioner,Home
+19,Heater,Home
+20,Fan,Home

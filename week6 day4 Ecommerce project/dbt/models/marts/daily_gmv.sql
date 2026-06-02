@@ -1,0 +1,11 @@
+{{ config(materialized='table') }}
+
+SELECT
+    ORDER_DATE,
+    COUNT(*) AS TOTAL_ORDERS,
+    SUM(AMOUNT) AS DAILY_GMV,
+    AVG(AMOUNT) AS AVG_ORDER_VALUE
+FROM {{ ref('fct_orders') }}
+WHERE STATUS = 'COMPLETED'
+GROUP BY ORDER_DATE
+ORDER BY ORDER_DATE
